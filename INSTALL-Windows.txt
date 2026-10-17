@@ -1,0 +1,28 @@
+Instalace na Windows 11
+-----------------------
+
+Balicek:
+- Rozbal `llm-chat-windows.zip`
+- Otevri slozku `LLM Chat Windows`
+- Spust `LLM Chat.cmd`
+
+Prvni spusteni:
+- Bootstrap vytvori runtime v `%LOCALAPPDATA%\LLM Chat`
+- Pokud chybi virtualni prostredi, vytvori `.venv`
+- Pokud se zmenily zavislosti, nainstaluje je z `requirements.txt`
+- Pak spusti aplikaci a otevre prohlizec na `http://127.0.0.1:8000`
+
+Pozadavky:
+- Windows 11
+- Python 3 nainstalovany v systemu (`py -3` nebo `python`)
+- Python musi byt aspon ve verzi 3.11
+- Internet pri prvnim spusteni kvuli `pip install`
+- Sitovy pristup k OpenAI-kompatibilnimu LLM endpointu podle vlastni konfigurace
+
+Poznamky:
+- Konverzace se ukladaji do `%LOCALAPPDATA%\LLM Chat\data\conversations`
+- Kod aplikace bezi z `%LOCALAPPDATA%\LLM Chat\app`
+- V hlavicce lze menit `LLM URL`, `LLM model` i prepinac `Mysleni`
+- Pred spustenim nastav alespon `LLM_BASE_URL` a `LLM_MODEL`; povolene URL lze rozsirit pres `LLM_ALLOWED_BASE_URLS`
+- Server posloucha jen na `127.0.0.1`; pro pristup ze site je nutna autentizovana TLS reverse proxy
+- Bez `Mysleni` aplikace pouziva `max_tokens=4096`, s `Mysleni` `max_tokens=8192`

@@ -1,0 +1,64 @@
+Rychlá instalace na Ubuntu 24.04 LTS
+-----------------------------------
+
+1) Rozbal archiv:
+   tar -xzf llm-chat-ubuntu.tar.gz
+   cd llm-chat
+
+2) Nainstaluj Python nástroje (pokud chybí):
+   sudo apt update
+   sudo apt install -y python3 python3-venv python3-pip
+
+3) Spusť instalační skript (vytvoří .venv a nainstaluje závislosti):
+   ./scripts/install.sh
+
+4) Spuštění serveru:
+   ./scripts/start.sh
+   UI poběží na http://127.0.0.1:8000
+   Skript se pokusí otevřít prohlížeč automaticky.
+   URL i model LLM můžeš pak měnit přímo v záhlaví aplikace bez restartu serveru.
+
+Volitelné proměnné před startem:
+   LLM_BASE_URL=http://127.0.0.1:11434/v1
+   LLM_ALLOWED_BASE_URLS=http://127.0.0.1:11434/v1
+   LLM_MODEL=your-model-name
+   LLM_API_STYLE=openai
+   LLM_API_KEY=                   # volitelne; skutecny klic neukladej do Gitu
+   LLM_IMAGE_INPUT_MODE=multimodal # obrazky a video se posilaji jako content parts
+   LLM_MAX_TOKENS=4096
+   LLM_MAX_TOKENS_THINKING=8192
+   LLM_THINKING_DEFAULT_ENABLED=false
+   LLM_TIMEOUT_SECONDS=900         # 15 minut cekani na dlouhou odpoved
+   LLM_SUPPORTS_ATTACHMENTS=true   # pokud backend umí poslat přílohy
+   LLM_ATTACHMENT_MODE=auto|force|disable
+   APP_PORT=8000
+   APP_HOST=127.0.0.1
+   APP_PUBLIC_URL=http://127.0.0.1:8000
+   AUTO_OPEN_BROWSER=true
+
+Struktura:
+   public/          statické UI (logo v public/logo.png)
+   src/             backend (FastAPI)
+   scripts/         install.sh, start.sh
+   requirements.txt Python závislosti
+   conversations/   perzistence konverzací a příloh
+
+Přílohy:
+- Textové soubory se posílají jako text v promptu.
+- Obrázky PNG/JPG/GIF/WEBP se pro OpenAI-compatible backend posílají jako `image_url`.
+- Video soubory MP4/AVI se pro OpenAI-compatible backend posílají jako `video_url`.
+- Ostatní binární soubory se posílají jako metadata nebo přes attachment payload, pokud backend tuto část API podporuje.
+
+Konverzace:
+- V levém panelu lze zakládat více chatů, přepínat mezi nimi a mazat nechtěné.
+- `Nový chat` přepne rovnou na novou prázdnou konverzaci.
+
+Myšlení:
+- V záhlaví aplikace je přepínač `Myšlení`.
+- Podle jeho stavu klient posílá `chat_template_kwargs.enable_thinking=true|false`.
+- Bez `Myšlení` používá aplikace `max_tokens=4096`, s `Myšlení` `max_tokens=8192`.
+
+Poznámka:
+- Archiv neobsahuje .venv ani data z conversations/. Ty se vytvoří/uloží při běhu.
+- Web muze pouzit jen endpointy z LLM_BASE_URL a LLM_ALLOWED_BASE_URLS.
+- Pro pristup ze site pouzij autentizovanou TLS reverse proxy; vestaveny server nema prihlaseni.

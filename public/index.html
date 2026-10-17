@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open LLM chat</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="workspace">
+        <aside class="chat-sidebar">
+          <div class="sidebar-top">
+            <div class="sidebar-title">Konverzace</div>
+            <button id="newChatButton" class="primary-btn small-btn" type="button">Nový chat</button>
+          </div>
+          <div id="conversationList" class="conversation-list"></div>
+        </aside>
+
+        <div class="chat-column">
+          <header class="app-header">
+            <div class="header-top">
+              <div class="brand">
+                <img src="/logo.png" alt="Logo" class="logo" />
+                <div class="title">Open LLM chat</div>
+              </div>
+              <div class="meta">
+                <span id="modelTag" class="pill"></span>
+                <span id="summaryTag" class="pill pill-muted" title="Shrnutí konverzace se ukládá automaticky"></span>
+              </div>
+            </div>
+            <div class="header-controls">
+              <form id="llmUrlForm" class="llm-settings">
+                <label class="llm-field" for="llmUrlInput">
+                  <span class="llm-label">LLM URL</span>
+                  <input
+                    id="llmUrlInput"
+                    type="url"
+                    inputmode="url"
+                    placeholder="http://127.0.0.1:11434/v1"
+                    autocomplete="off"
+                  />
+                </label>
+                <label class="llm-field" for="llmModelInput">
+                  <span class="llm-label">LLM model</span>
+                  <input
+                    id="llmModelInput"
+                    type="text"
+                    placeholder="local-model"
+                    autocomplete="off"
+                    list="llmModelOptions"
+                  />
+                  <datalist id="llmModelOptions"></datalist>
+                </label>
+                <button id="llmUrlButton" class="secondary-btn" type="submit">Použít</button>
+              </form>
+              <label class="thinking-toggle" for="thinkingToggle">
+                <input id="thinkingToggle" type="checkbox" />
+                <span>Myšlení</span>
+              </label>
+            </div>
+          </header>
+
+          <main class="chat-pane">
+            <ul id="messages" class="messages"></ul>
+            <div id="emptyState" class="empty hidden">Napiš první zprávu a přidej soubor přes sponku.</div>
+          </main>
+
+          <footer class="composer">
+            <div class="attachments" id="attachmentChips"></div>
+            <div class="input-row">
+              <button id="fileButton" class="icon-btn" title="Přiložit soubor">📎</button>
+              <input id="fileInput" type="file" class="hidden" multiple />
+              <textarea id="messageInput" rows="1" placeholder="Zeptej se... (Enter = odeslat, Shift+Enter = nový řádek)"></textarea>
+              <button id="sendButton" class="primary-btn">Odeslat</button>
+            </div>
+            <div class="hint" id="hint"></div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
