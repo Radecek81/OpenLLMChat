@@ -48,13 +48,13 @@ final class ModelsTests: XCTestCase {
         }
         """
         let settings = try JSONDecoder().decode(AppSettings.self, from: Data(legacy.utf8))
-        XCTAssertEqual(settings.schemaVersion, 2)
+        XCTAssertEqual(settings.schemaVersion, 4)
         XCTAssertEqual(settings.profiles.first?.legacyAPIKey, "legacy-secret")
 
         let encoded = try JSONEncoder().encode(settings)
         let json = try XCTUnwrap(String(data: encoded, encoding: .utf8))
         XCTAssertFalse(json.contains("legacy-secret"))
-        XCTAssertTrue(json.contains("\"schemaVersion\":2"))
+        XCTAssertTrue(json.contains("\"schemaVersion\":4"))
     }
 
     func testRouterEnforcesContextAndRetryPolicy() throws {

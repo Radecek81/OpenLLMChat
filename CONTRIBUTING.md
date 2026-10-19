@@ -10,4 +10,7 @@ Thank you for helping improve Open LLM chat.
 
 For security issues, follow `SECURITY.md` instead of opening a public issue.
 
-The project has not selected a license yet. External contributions should wait until the repository owner adds one and defines the contribution terms.
+By submitting a contribution, you agree that it may be distributed under the
+GNU Affero General Public License v3.0 together with the project's additional
+attribution terms in `ADDITIONAL_TERMS.md`. Preserve existing copyright,
+license, and attribution notices in modified files.

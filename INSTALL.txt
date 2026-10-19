@@ -62,3 +62,6 @@ Poznámka:
 - Archiv neobsahuje .venv ani data z conversations/. Ty se vytvoří/uloží při běhu.
 - Web muze pouzit jen endpointy z LLM_BASE_URL a LLM_ALLOWED_BASE_URLS.
 - Pro pristup ze site pouzij autentizovanou TLS reverse proxy; vestaveny server nema prihlaseni.
+LICENSE AND ATTRIBUTION
+OpenLLMChat is licensed under AGPL-3.0 with additional attribution terms.
+Copyright (C) 2026 Uberit s.r.o. See LICENSE, NOTICE, and ADDITIONAL_TERMS.md.

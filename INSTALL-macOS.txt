@@ -24,3 +24,6 @@ Poznámky:
 - Bez `Myšlení` aplikace používá `max_tokens=4096`, s `Myšlení` `max_tokens=8192`
 - Výchozí timeout pro LLM odpověď je 15 minut
 - Přílohy se ukládají vedle konverzace do podsložky `conversations/<id>/files`
+LICENSE AND ATTRIBUTION
+OpenLLMChat is licensed under AGPL-3.0 with additional attribution terms.
+Copyright (C) 2026 Uberit s.r.o. See LICENSE, NOTICE, and ADDITIONAL_TERMS.md.

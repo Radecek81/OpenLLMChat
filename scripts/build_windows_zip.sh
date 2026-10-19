@@ -26,6 +26,7 @@ rsync -a \
   --exclude "dist" \
   --exclude "reports" \
   --exclude "research_notes" \
+  --exclude "release-ready-*.png" \
   --exclude "__pycache__" \
   --exclude "*.pyc" \
   --exclude "*.dmg" \

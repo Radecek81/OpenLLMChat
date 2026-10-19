@@ -1,3 +1,10 @@
+"""OpenLLMChat entry point.
+
+Copyright (C) 2026 Uberit s.r.o.
+SPDX-License-Identifier: AGPL-3.0-only
+Additional terms: ADDITIONAL_TERMS.md
+"""
+
 import os
 
 import uvicorn

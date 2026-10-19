@@ -16,6 +16,7 @@ swift-macos/.build/
 swift-macos/.build-dist/
 reports/
 research_notes/
+release-ready-*.png
 
 .idea/
 .vscode/

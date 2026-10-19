@@ -1,6 +1,10 @@
 import AppKit
 import SwiftUI
 
+// Copyright (C) 2026 Uberit s.r.o.
+// SPDX-License-Identifier: AGPL-3.0-only
+// Additional terms: ../../../../ADDITIONAL_TERMS.md
+
 @main
 struct LLMChatApp: App {
     @StateObject private var viewModel = AppViewModel.bootstrap()

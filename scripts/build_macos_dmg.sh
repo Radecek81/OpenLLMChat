@@ -41,6 +41,10 @@ fi
 mkdir -p "${APP_BUNDLE}/Contents/MacOS" "${APP_BUNDLE}/Contents/Resources"
 cp "${BINARY_PATH}" "${APP_BUNDLE}/Contents/MacOS/${EXECUTABLE_NAME}"
 chmod +x "${APP_BUNDLE}/Contents/MacOS/${EXECUTABLE_NAME}"
+cp "${APP_ROOT}/LICENSE" "${APP_BUNDLE}/Contents/Resources/LICENSE"
+cp "${APP_ROOT}/NOTICE" "${APP_BUNDLE}/Contents/Resources/NOTICE"
+cp "${APP_ROOT}/ADDITIONAL_TERMS.md" "${APP_BUNDLE}/Contents/Resources/ADDITIONAL_TERMS.md"
+cp "${APP_ROOT}/THIRD_PARTY_NOTICES.md" "${APP_BUNDLE}/Contents/Resources/THIRD_PARTY_NOTICES.md"
 if [[ -n "${RESOURCE_BUNDLE_PATH}" && -d "${RESOURCE_BUNDLE_PATH}" ]]; then
   cp -R "${RESOURCE_BUNDLE_PATH}" "${APP_BUNDLE}/Contents/Resources/"
 fi
@@ -70,6 +74,8 @@ cat > "${APP_BUNDLE}/Contents/Info.plist" <<'PLIST'
   <string>3.0</string>
   <key>CFBundleVersion</key>
   <string>4</string>
+  <key>NSHumanReadableCopyright</key>
+  <string>Copyright © 2026 Uberit s.r.o. Licensed under AGPL-3.0.</string>
   <key>NSMicrophoneUsageDescription</key>
   <string>Open LLM chat uses the microphone only when you start push-to-talk transcription.</string>
   <key>LSMinimumSystemVersion</key>
@@ -118,6 +124,10 @@ cp -R "${APP_BUNDLE}" "${STAGE_ROOT}/"
 if [[ -f "${INSTALL_NOTE}" ]]; then
   cp "${INSTALL_NOTE}" "${STAGE_ROOT}/"
 fi
+cp "${APP_ROOT}/LICENSE" "${STAGE_ROOT}/"
+cp "${APP_ROOT}/NOTICE" "${STAGE_ROOT}/"
+cp "${APP_ROOT}/ADDITIONAL_TERMS.md" "${STAGE_ROOT}/"
+cp "${APP_ROOT}/THIRD_PARTY_NOTICES.md" "${STAGE_ROOT}/"
 ln -s /Applications "${STAGE_ROOT}/Applications"
 
 hdiutil create \

@@ -26,3 +26,6 @@ Poznamky:
 - Pred spustenim nastav alespon `LLM_BASE_URL` a `LLM_MODEL`; povolene URL lze rozsirit pres `LLM_ALLOWED_BASE_URLS`
 - Server posloucha jen na `127.0.0.1`; pro pristup ze site je nutna autentizovana TLS reverse proxy
 - Bez `Mysleni` aplikace pouziva `max_tokens=4096`, s `Mysleni` `max_tokens=8192`
+LICENSE AND ATTRIBUTION
+OpenLLMChat is licensed under AGPL-3.0 with additional attribution terms.
+Copyright (C) 2026 Uberit s.r.o. See LICENSE, NOTICE, and ADDITIONAL_TERMS.md.

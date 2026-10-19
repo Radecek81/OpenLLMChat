@@ -121,6 +121,18 @@ scripts/       installation, startup, and packaging scripts
 tests/         backend security and concurrency tests
 ```
 
+## License and attribution
+
+OpenLLMChat is free software licensed under the [GNU Affero General Public License v3.0](LICENSE).
+Private and commercial use is permitted under the license. Distributed modifications and modified
+versions made available to users over a network must provide their corresponding source code under
+the AGPL-3.0.
+
+Copyright (C) 2026 Uberit s.r.o. All interactive versions must preserve the required attribution
+described in [ADDITIONAL_TERMS.md](ADDITIONAL_TERMS.md). Third-party components are listed in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). A repository license has intentionally not yet been selected; add one before publishing the project as open source.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Contributions are accepted under AGPL-3.0 together with the
+project's additional attribution terms.

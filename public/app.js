@@ -1,3 +1,7 @@
+// Copyright (C) 2026 Uberit s.r.o.
+// SPDX-License-Identifier: AGPL-3.0-only
+// Additional terms: ../ADDITIONAL_TERMS.md
+
 const state = {
   config: null,
   conversationId: null,

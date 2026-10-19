@@ -41,6 +41,34 @@ body {
   overflow: hidden;
 }
 
+.legal-notice {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.legal-notice summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.legal-notice summary::-webkit-details-marker {
+  display: none;
+}
+
+.legal-notice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.legal-notice a {
+  color: var(--accent);
+}
+
 .workspace {
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);

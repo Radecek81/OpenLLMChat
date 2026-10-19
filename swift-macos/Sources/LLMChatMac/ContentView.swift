@@ -6,6 +6,7 @@ struct ContentView: View {
     @State private var showingImporter = false
     @State private var showingKnowledgeImporter = false
     @State private var showingSavedProfiles = false
+    @State private var showingLegalNotice = false
     @State private var promptEditorHeight: CGFloat = 72
 
     private let bottomAnchor = "chat-bottom"
@@ -154,6 +155,40 @@ struct ContentView: View {
                     }
                 }
                 .padding(.vertical, 4)
+            }
+
+            Divider()
+
+            Button {
+                showingLegalNotice.toggle()
+            } label: {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Powered by Uberit s.r.o.")
+                        .font(.caption.weight(.semibold))
+                    Text(L10n.choose("Licence a zdrojový kód", "License and source code"))
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .buttonStyle(.plain)
+            .popover(isPresented: $showingLegalNotice, arrowEdge: .trailing) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("OpenLLMChat")
+                        .font(.headline)
+                    Text("Copyright © 2026 Uberit s.r.o.")
+                        .font(.subheadline.weight(.semibold))
+                    Text(L10n.choose("Původně vytvořila Uberit s.r.o.", "Originally created by Uberit s.r.o."))
+                        .font(.caption)
+                    Text(L10n.choose("Software je poskytován bez záruky pod licencí AGPL-3.0.", "The software is provided without warranty under AGPL-3.0."))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Link(L10n.choose("Licence, dodatečné podmínky a zdrojový kód", "License, additional terms, and source code"),
+                         destination: URL(string: "https://github.com/Radecek81/OpenLLMChat")!)
+                        .font(.caption)
+                }
+                .padding(16)
+                .frame(width: 330, alignment: .leading)
             }
         }
         .padding(18)
