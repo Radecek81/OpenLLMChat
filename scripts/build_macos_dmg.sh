@@ -71,9 +71,9 @@ cat > "${APP_BUNDLE}/Contents/Info.plist" <<'PLIST'
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
-  <string>3.0</string>
+  <string>3.0.1</string>
   <key>CFBundleVersion</key>
-  <string>4</string>
+  <string>5</string>
   <key>NSHumanReadableCopyright</key>
   <string>Copyright © 2026 Uberit s.r.o. Licensed under AGPL-3.0.</string>
   <key>NSMicrophoneUsageDescription</key>
