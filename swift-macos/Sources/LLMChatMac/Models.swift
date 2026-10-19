@@ -235,7 +235,7 @@ struct Conversation: Codable, Identifiable, Hashable {
         case files
     }
 
-    init(id: String = UUID().uuidString.replacingOccurrences(of: "-", with: ""), createdAt: String = Date.timestamp, updatedAt: String? = nil, summary: String = "", generatedTitle: String? = nil, messages: [ChatMessage] = [], files: [AttachmentMetadata] = []) {
+    init(id: String = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased(), createdAt: String = Date.timestamp, updatedAt: String? = nil, summary: String = "", generatedTitle: String? = nil, messages: [ChatMessage] = [], files: [AttachmentMetadata] = []) {
         self.id = id
         self.createdAt = createdAt
         self.updatedAt = updatedAt ?? createdAt

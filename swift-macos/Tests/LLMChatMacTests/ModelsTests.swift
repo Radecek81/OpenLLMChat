@@ -3,6 +3,13 @@ import XCTest
 @testable import LLMChatMac
 
 final class ModelsTests: XCTestCase {
+    func testNewConversationUsesStorageCompatibleIdentifier() {
+        let id = Conversation().id
+
+        XCTAssertEqual(id.count, 32)
+        XCTAssertTrue(id.allSatisfy { $0.isHexDigit && !$0.isUppercase })
+    }
+
     func testPublicDefaultsDoNotContainPrivateInfrastructure() {
         XCTAssertTrue(AppDefaults.baseURL.isEmpty)
         XCTAssertTrue(AppDefaults.model.isEmpty)

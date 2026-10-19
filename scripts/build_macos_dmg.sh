@@ -19,27 +19,21 @@ mkdir -p "${DIST_ROOT}"
 rm -rf "${APP_BUNDLE}" "${LEGACY_APP_BUNDLE}" "${STAGE_ROOT}" "${DMG_PATH}" "${ZIP_PATH}" "${LEGACY_ZIP_PATH}"
 
 if [[ "${MACOS_SKIP_SWIFT_BUILD:-false}" != "true" ]]; then
-  swift build -c release --package-path "${SWIFT_ROOT}"
+  swift build -c release --package-path "${SWIFT_ROOT}" --arch arm64
+  swift build -c release --package-path "${SWIFT_ROOT}" --arch x86_64
 fi
 
-ARCH="$(uname -m)"
-BINARY_PATH="${SWIFT_ROOT}/.build/${ARCH}-apple-macosx/release/${EXECUTABLE_NAME}"
-RESOURCE_BUNDLE_PATH="${SWIFT_ROOT}/.build/${ARCH}-apple-macosx/release/${EXECUTABLE_NAME}_${EXECUTABLE_NAME}.bundle"
+ARM_BINARY_PATH="${SWIFT_ROOT}/.build/arm64-apple-macosx/release/${EXECUTABLE_NAME}"
+INTEL_BINARY_PATH="${SWIFT_ROOT}/.build/x86_64-apple-macosx/release/${EXECUTABLE_NAME}"
+RESOURCE_BUNDLE_PATH="${SWIFT_ROOT}/.build/arm64-apple-macosx/release/${EXECUTABLE_NAME}_${EXECUTABLE_NAME}.bundle"
 
-if [[ ! -f "${BINARY_PATH}" ]]; then
-  BINARY_PATH="$(find "${SWIFT_ROOT}/.build" -path "*/release/${EXECUTABLE_NAME}" -type f | head -n 1)"
-fi
-if [[ ! -d "${RESOURCE_BUNDLE_PATH}" ]]; then
-  RESOURCE_BUNDLE_PATH="$(find "${SWIFT_ROOT}/.build" -path "*/release/${EXECUTABLE_NAME}_${EXECUTABLE_NAME}.bundle" -type d | head -n 1)"
-fi
-
-if [[ -z "${BINARY_PATH}" ]]; then
-  echo "Nepodarilo se najit release binarku ${EXECUTABLE_NAME}."
+if [[ ! -f "${ARM_BINARY_PATH}" || ! -f "${INTEL_BINARY_PATH}" ]]; then
+  echo "Nepodarilo se najit obe release binarky ${EXECUTABLE_NAME} (arm64 a x86_64)."
   exit 1
 fi
 
 mkdir -p "${APP_BUNDLE}/Contents/MacOS" "${APP_BUNDLE}/Contents/Resources"
-cp "${BINARY_PATH}" "${APP_BUNDLE}/Contents/MacOS/${EXECUTABLE_NAME}"
+lipo -create "${ARM_BINARY_PATH}" "${INTEL_BINARY_PATH}" -output "${APP_BUNDLE}/Contents/MacOS/${EXECUTABLE_NAME}"
 chmod +x "${APP_BUNDLE}/Contents/MacOS/${EXECUTABLE_NAME}"
 cp "${APP_ROOT}/LICENSE" "${APP_BUNDLE}/Contents/Resources/LICENSE"
 cp "${APP_ROOT}/NOTICE" "${APP_BUNDLE}/Contents/Resources/NOTICE"
@@ -71,9 +65,9 @@ cat > "${APP_BUNDLE}/Contents/Info.plist" <<'PLIST'
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
-  <string>3.0.1</string>
+  <string>3.0.2</string>
   <key>CFBundleVersion</key>
-  <string>5</string>
+  <string>6</string>
   <key>NSHumanReadableCopyright</key>
   <string>Copyright © 2026 Uberit s.r.o. Licensed under AGPL-3.0.</string>
   <key>NSMicrophoneUsageDescription</key>
